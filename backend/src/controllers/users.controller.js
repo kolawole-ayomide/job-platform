@@ -127,7 +127,7 @@ export const updateProfile = asyncHandler(async (req, res) => {
   const profile = await Profile.findOneAndUpdate(
     { userId: req.user._id },
     { $set: req.body },
-    { new: true, runValidators: true }
+    { returnDocument: 'after', runValidators: true }
   );
 
   if (!profile) {

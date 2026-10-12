@@ -85,7 +85,7 @@ export async function runScanCycle(agentId, { batchSize = 25 } = {}) {
       $or: [{ isScanning: { $ne: true } }, { scanClaimedAt: { $lt: staleBefore } }],
     },
     { $set: { isScanning: true, scanClaimedAt: new Date() } },
-    { new: true }
+    { returnDocument: 'after' }
   );
   if (!agent) return null; // not running, doesn't exist, or a scan is already (genuinely) in progress
 

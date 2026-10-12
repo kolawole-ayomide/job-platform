@@ -70,7 +70,7 @@ export const updateBotConfig = asyncHandler(async (req, res) => {
   const conversation = await WizbotConversation.findOneAndUpdate(
     { _id: conversationId, userId: req.user._id },
     { $set: { "botConfig.avatar": avatar, "botConfig.persona": persona } },
-    { new: true }
+    { returnDocument: 'after' }
   );
 
   if (!conversation) throw ApiError.notFound("Conversation not found.");

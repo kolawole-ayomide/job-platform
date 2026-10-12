@@ -265,7 +265,7 @@ export const saveJob = asyncHandler(async (req, res) => {
   const saved = await SavedJob.findOneAndUpdate(
     { userId: req.user._id, jobId: job._id },
     { userId: req.user._id, jobId: job._id },
-    { upsert: true, new: true }
+    { upsert: true, returnDocument: 'after'}
   );
 
   res.status(200).json(new ApiResponse(200, { saved: true, savedJob: saved }, "Job saved."));

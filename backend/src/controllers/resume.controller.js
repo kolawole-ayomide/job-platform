@@ -25,7 +25,7 @@ export const updateResumeData = asyncHandler(async (req, res) => {
   const profile = await Profile.findOneAndUpdate(
     { userId: req.user._id },
     { $set: req.body },
-    { new: true, runValidators: true }
+    { returnDocument: 'after', runValidators: true }
   );
   if (!profile) throw ApiError.notFound("Profile not found.");
   res.status(200).json(new ApiResponse(200, { profile }, "Resume updated."));

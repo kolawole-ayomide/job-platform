@@ -13,7 +13,7 @@ export async function upsertJSearchJobs(normalizedJobs) {
     await Job.findOneAndUpdate(
       { source: "jsearch", externalId: job.externalId },
       { $set: job },
-      { upsert: true, new: true, setDefaultsOnInsert: true }
+      { upsert: true, returnDocument: 'after', setDefaultsOnInsert: true }
     );
     upserted += 1;
   }
