@@ -10,6 +10,7 @@ import notFound from "./middlewares/notFound.middleware.js";
 import errorHandler from "./middlewares/errorHandler.middleware.js";
 
 const app = express();
+app.set("trust proxy", 1);
 
 // --- Security & parsing middleware (order matters) ---
 app.use(helmet());
